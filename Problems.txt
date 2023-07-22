@@ -1,0 +1,126 @@
+
+//Merge Sort//
+public static void merge(int A[],int low,int mid,int high)
+  {  
+     int n1=mid-low+1,n2=high-mid;
+     int left[]=new int[n1];
+     int right[]=new int[n2];
+     for(int i=0;i<n1;i++)
+     left[i]=A[low+i];
+     for(int j=0;j<n2;j++)
+     right[j]=A[mid+j+1];
+     int i=0,j=0,k=low;
+     while(i<n1&&j<n2)
+     {
+      if(left[i]<=right[j])
+      A[k++]=left[i++];
+      else
+      A[k++]=right[j++];
+     }
+     while(i<n1)
+     A[k++]=left[i++];
+     while(j<n2)
+     A[k++]=right[j++];
+    
+  }
+  public static void mergesort(int arr[],int l,int h)
+  {
+    if(h>l)
+    { int m=(l+h)/2;
+      mergesort(arr,l,m);
+      mergesort(arr,m+1,h);
+      merge(arr,l,m,h);
+    }
+}
+
+
+
+__________________________________________________________________________________________________________________________________________
+problem statement:Merged Intervals
+Code: import java.util.*;
+class student 
+{
+  int a;
+  int b;
+  public student(int a, int b) {
+    this.a = a;
+    this.b = b;
+  }
+      public String toString() {
+        return "student{" +
+                "a=" + a +
+                ", b=" + b +
+                '}';
+    }
+};
+class comp
+{
+	  public static void main(String[]args)
+    {  
+      Comparator<student> comp=new Comparator<student>()
+      {
+        public int compare(student s1,student s2)
+        {
+            if(s1.a>s2.a)
+              return 1;
+            else
+            return -1;
+        }
+      };
+      student arr[]={
+      new student(1,3),
+      new student(2,4),
+      new student(5,7),
+      new student(6,8),
+      new student(1,4),
+      new student(5, 8),
+      };
+       Arrays.sort(arr,comp);
+       int res=0;
+       for(int i=1;i<arr.length;i++)
+      {
+        if(arr[res].b>=arr[i].a)
+        {
+          arr[res].a=Math.min(arr[i].a,arr[res].a);
+          arr[res].b=Math.max(arr[i].b,arr[res].b);
+        }
+        else{
+        res++;
+        arr[res]=arr[i];
+      }
+    }
+      for(int k=0;k<= res;k++)
+        System.out.println(arr[k].a+","+arr[k].b);
+}
+}
+__________________________________________________________________________________________________________________________________________
+
+Problem statement:insertion using linear probing(method of Hashing)
+
+public static int[] linearProbing(int hash_size, int arr[], int sizeOfArray)
+    {   int table[]=new int[hash_size];
+        Arrays.fill(table,-1);
+        int size=0;
+        for(int k=0;k<sizeOfArray;k++)
+        {   
+            if(size==hash_size)
+                break;
+            int h=hash(arr[k],hash_size);
+            int i=h;
+            while(table[i]!=-1&&table[i]!=arr[k])
+                i=(i+1)%hash_size;
+            if(arr[k]==table[i])
+               continue;
+            else
+            {
+                table[i]=arr[k];
+                size++;
+            }
+               
+        }
+        return table;
+        
+    }
+    public int hash(int key,int h){
+      return key%h;
+    }
