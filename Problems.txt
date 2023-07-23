@@ -124,3 +124,15 @@ public static int[] linearProbing(int hash_size, int arr[], int sizeOfArray)
     public int hash(int key,int h){
       return key%h;
     }
+
+ _______________________________________________________________________________________________________________________
+
+Problem-How to directly sort 2d Array on the basis of first element.
+
+import java.util.*;
+class Solution {
+    public int[][] merge(int[][] intervals) {
+        Arrays.sort(intervals,Comparator.comparingInt(a->a[0]));
+        return intervals;
+    }
+}
