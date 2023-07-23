@@ -136,3 +136,27 @@ class Solution {
         return intervals;
     }
 }
+________________________________________________________________________________________________________________________
+Problem-Merge intervals and return the 2D array consisting of all merged intervals.
+
+import java.util.*;
+
+class Solution {
+    public int[][] merge(int[][] intervals) {
+        Arrays.sort(intervals, Comparator.comparingInt(a -> a[0]));
+        ArrayList<int[]> list = new ArrayList<>();
+        int[] current = intervals[0];
+        for (int i = 1; i < intervals.length; i++) {
+            int[] inter = intervals[i];
+            if (current[1] >= inter[0]) {
+                current[1] = Math.max(current[1], inter[1]);
+            } else {
+                list.add(current);
+                current = inter;
+            }
+        }
+        list.add(current);
+        return list.toArray(new int[list.size()][]);
+    }
+}
+
