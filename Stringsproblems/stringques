@@ -1,11 +1,5 @@
-Problem Statement-We are given with a string with possible repetetions,we need to find the leftmost character which repeats in the string
-
-Time:O(n)
-Aux:O(CHAR)  CHAR=256
-
-Code:
-    public static int subseq(String s1)
-    {
+oublic static int subseq(String s1)
+    {   
         int count[]=new int[256];
         Arrays.fill(count,0);
         int l=s1.length();
@@ -20,23 +14,53 @@ Code:
         }
         return -1;
     }
+_______________________________________________________________________________________________________________________
 
-Optimized Approach-
-Time:O(n) (One Traversal)
-Aux:O(CHAR)  CHAR=256
+RABIN - KARP ALGORITHM
 
-static final int CHAR=256;
-static int leftMost(String str)
-{
- boolean[] visited=new boolean[CHAR];
- int res=-1;
- for(int i=str.length()-1;i>=0;i--){
- if(visited[str.charAt(i)])
- res=i;
- else
- visited[str.charAt(i)]=true;
- }
+Problem statement- To find the occurence of a string into another string
 
- return res;
 
-}
+Input:
+s = GeeksForGeeks, x = For
+Output: 5
+Explanation: For is present as substring
+in GeeksForGeeks from index 5 (0 based
+indexing).
+
+Code:public static void RabinKarp(String pat,String txt,int q)
+    {
+        int n=txt.length();
+        int m=pat.length();
+        int h=1;
+        int p=0;
+        int t=0;
+        int d=256;
+        for(int i=1;i<=m-1;i++)
+        {
+            h=(h*d)%q;
+        }
+        for(int i=0;i<m;i++)
+        {
+            p=(p*d+pat.charAt(i))%q;
+            t=(t*d+txt.charAt(i))%q;
+        }
+        for(int i=0;i<=n-m;i++)
+        {
+            if(t==p)
+            {
+                int j;
+                for(j=0;j<m;j++)
+                    if(txt.charAt(j+i)!=pat.charAt(j))
+                        break;
+                if(j == m)
+                System.err.println(i+" ");
+            }
+            if(i<n-m)
+            {
+                t=((d* (t-txt.charAt(i)*h)+txt.charAt(i+m)))%q;
+                if(t<0)
+                t+=q;
+            }
+        }
+    }
