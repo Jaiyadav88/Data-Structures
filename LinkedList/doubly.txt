@@ -1,0 +1,20 @@
+problem statement-Insert at the end of the linked list
+
+
+Example :1->2->3->4
+         data=5
+	 1->2->3->4->5
+
+Code:
+    public static Node insertend(Node head,int data)
+    {   Node x=new Node(data);
+        Node curr=head;
+        if(head==null)
+          return x;
+        while(curr.next!=null)
+         curr=curr.next;
+        curr.next=x;
+        x.prev=curr;
+        return head;
+        
+    }
