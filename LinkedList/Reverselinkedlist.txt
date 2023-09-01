@@ -1,0 +1,28 @@
+Problem Statement-Reverse a doubly linked list
+
+Example 1:
+Input:
+1->2->3->4
+Output:
+4->3->2->1
+
+
+Code:
+    public static Node reverse(Node head)
+    {   
+        if(head==null)
+          return null;
+        if(head.next==null)
+          return head;
+        Node curr=head;Node newhead=null;
+        while(curr!=null)
+        {   if(curr.next==null) 
+              head=curr;
+            Node temp=curr.next;
+            curr.next=curr.prev;
+            curr.prev=temp;
+            newhead=curr;
+            curr=temp;
+        }
+        return newhead;
+    }
