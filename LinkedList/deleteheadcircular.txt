@@ -1,0 +1,22 @@
+Problem Statement-Delete the head of a Circular Linkedlist in O(1)
+
+Example:1
+Input:
+1->2->3->4
+
+Output:
+2->3->4
+
+Code:
+
+public static Node delheadDLL(Node head,int data)
+    {   Node x=new Node(data);
+        if(head==null)
+         return null;
+        if(head.next==null)
+          return null;
+        head.data=head.next.data;
+        head.next=head.next.next;
+        return head;
+    }
+
