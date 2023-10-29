@@ -31,3 +31,6 @@ So, the divisibility of 4368 is now dependent on the sum 4 + 3 + 6 + 8.
 Here, 4, 3, 6 and 8 are the digits of the number 4368.
 Source
 
+12.Manacher's Algorithm
+
+13.Given an integer num, repeatedly add all its digits until the result has only one digit, and return it.
