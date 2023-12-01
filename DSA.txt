@@ -34,3 +34,5 @@ Source
 12.Manacher's Algorithm
 
 13.Given an integer num, repeatedly add all its digits until the result has only one digit, and return it.
+
+14.Morris Traversal(Flatten a binary Tree)
